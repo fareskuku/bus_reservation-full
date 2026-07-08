@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Ticket - Addis Metro</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <nav class="main-nav">
+                <a href="index.html" class="logo">🚌 Addis Metro</a>
+                <button class="nav-toggle" aria-label="Toggle menu">
+                    <span class="hamburger"></span>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="booking.html" class="nav-link active">Book Ticket</a></li>
+                    <li><a href="tickets.html" class="nav-link">My Tickets</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li class="auth-nav">
+                        <a href="#" id="loginBtn" class="nav-link">Login</a>
+                        <a href="#" id="registerBtn" class="nav-link">Register</a>
+                    </li>
+                    <li class="user-nav" style="display: none;">
+                        <a href="#" id="dashboardBtn" class="nav-link">📊 Dashboard</a>
+                        <a href="#" id="logoutBtn" class="nav-link">Logout</a>
+                    </li>
+                    <li class="admin-nav" style="display: none;">
+                        <a href="#" id="adminDashboardBtn" class="nav-link">👑 Admin Panel</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <header class="page-header">
+                <h1 class="page-title">Book Your Bus Ticket</h1>
+                <p class="page-subtitle">Complete your booking in 4 simple steps</p>
+            </header>
+
+            <div class="booking-steps">
+                <div class="step active" data-step="1">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Route Details</div>
+                </div>
+                <div class="step" data-step="2">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Select Seats</div>
+                </div>
+                <div class="step" data-step="3">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Passenger Info</div>
+                </div>
+                <div class="step" data-step="4">
+                    <div class="step-number">4</div>
+                    <div class="step-label">Confirmation</div>
+                </div>
+            </div>
+
+            <form id="booking-form" class="booking-form">
+                <div class="form-section" data-step="1">
+                    <div class="form-container">
+                        <h2 class="form-title">Route Details</h2>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="from-location" class="form-label">From</label>
+                                <select id="from-location" class="form-select" required>
+                                    <option value="">Select starting point</option>
+                                    <option value="piazza">Piazza</option>
+                                    <option value="bole">Bole</option>
+                                    <option value="mercatto">Mercato</option>
+                                    <option value="mexico">Mexico Square</option>
+                                    <option value="airport">Bole Airport</option>
+                                    <option value="saris">Saris</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="to-location" class="form-label">To</label>
+                                <select id="to-location" class="form-select" required>
+                                    <option value="">Select destination</option>
+                                    <option value="piazza">Piazza</option>
+                                    <option value="bole">Bole</option>
+                                    <option value="mercatto">Mercato</option>
+                                    <option value="mexico">Mexico Square</option>
+                                    <option value="airport">Bole Airport</option>
+                                    <option value="saris">Saris</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="travel-date" class="form-label">Travel Date</label>
+                                <input type="date" id="travel-date" class="form-input" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="travel-time" class="form-label">Preferred Time</label>
+                                <input type="time" id="travel-time" class="form-input" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="passengers" class="form-label">Number of Passengers</label>
+                            <select id="passengers" class="form-select" required>
+                                <option value="1">1 Passenger</option>
+                                <option value="2">2 Passengers</option>
+                                <option value="3">3 Passengers</option>
+                                <option value="4">4 Passengers</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section" data-step="2" style="display: none;">
+                    <div class="form-container">
+                        <h2 class="form-title">Select Your Seats</h2>
+                        <div class="bus-layout">
+                            <p class="seat-info">Select up to <span id="max-seats">4</span> seat(s) (ETB 20 per seat)</p>
+                            <div class="seat-legend">
+                                <span class="legend-item"><span class="legend-seat available"></span> Available</span>
+                                <span class="legend-item"><span class="legend-seat selected"></span> Selected</span>
+                                <span class="legend-item"><span class="legend-seat booked"></span> Booked</span>
+                            </div>
+                            <div id="seats-container" class="seats-container"></div>
+                            <div class="seat-summary">
+                                <p>Selected Seats: <span id="selected-seats-count">0</span></p>
+                                <p>Seat Numbers: <span id="selected-seats-list">None</span></p>
+                                <p class="total-price">Total Price: ETB <span id="total-price">0</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section" data-step="3" style="display: none;">
+                    <div class="form-container">
+                        <h2 class="form-title">Passenger Information</h2>
+                        <div id="passenger-forms"></div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" id="email" class="form-input" required placeholder="your.email@example.com" />
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input type="tel" id="phone" class="form-input" required placeholder="09XXXXXXXX" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section" data-step="4" style="display: none;">
+                    <div class="form-container">
+                        <h2 class="form-title">Confirmation</h2>
+                        <div class="card">
+                            <h3>Booking Summary</h3>
+                            <div class="summary-details">
+                                <p><strong>Route:</strong> <span id="summary-route"></span></p>
+                                <p><strong>Date:</strong> <span id="summary-date"></span></p>
+                                <p><strong>Time:</strong> <span id="summary-time"></span></p>
+                                <p><strong>Passengers:</strong> <span id="summary-passengers"></span></p>
+                                <p><strong>Seats:</strong> <span id="summary-seats"></span></p>
+                                <p><strong>Total:</strong> ETB <span id="summary-total"></span></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="payment" class="form-label">Payment Method</label>
+                            <select id="payment" class="form-select" required>
+                                <option value="">Select payment method</option>
+                                <option value="telebirr">Telebirr</option>
+                                <option value="cash">Cash at Station</option>
+                                <option value="cbe">CBE Birr</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" id="terms" required />
+                            <label for="terms">I agree to the terms and conditions</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-navigation">
+                    <button type="button" class="btn btn-secondary" id="prev-btn">Previous</button>
+                    <button type="button" class="btn btn-primary" id="next-btn">Next Step</button>
+                </div>
+            </form>
+
+            <div id="confirmation" class="confirmation-section" style="display: none;">
+                <div class="form-container">
+                    <div class="confirmation-content">
+                        <div class="confirmation-icon">✅</div>
+                        <h2 class="confirmation-title">Booking Confirmed!</h2>
+                        <p class="confirmation-message">Your booking has been successfully completed.</p>
+                        <p class="booking-id"><strong>Booking ID:</strong> <span id="booking-id"></span></p>
+                        <p class="confirmation-note">You can view your ticket in "My Tickets" section.</p>
+                        <div class="confirmation-buttons">
+                            <a href="tickets.html" class="btn btn-primary">View My Tickets</a>
+                            <a href="index.html" class="btn btn-outline">Back to Home</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close modal">×</button>
+            
+            <div id="loginForm">
+                <h2 class="modal-title">Login</h2>
+                <form id="loginFormElement">
+                    <div class="form-group">
+                        <input type="email" id="loginEmail" class="form-input" placeholder="Email Address" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="loginPassword" class="form-input" placeholder="Password" required />
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Login</button>
+                </form>
+                <p style="text-align:center;margin-top:1rem;">
+                    Don't have an account? <a href="#" id="switchToRegister">Register</a>
+                </p>
+            </div>
+
+            <div id="registerForm" style="display: none;">
+                <h2 class="modal-title">Create Account</h2>
+                <form id="registerFormElement">
+                    <div class="form-group">
+                        <label class="form-label">Full Name *</label>
+                        <input type="text" id="registerFullName" class="form-input" placeholder="Enter your full name" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email Address *</label>
+                        <input type="email" id="registerEmail" class="form-input" placeholder="your.email@example.com" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Phone Number *</label>
+                        <input type="tel" id="registerPhone" class="form-input" placeholder="09XXXXXXXX" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Address</label>
+                        <input type="text" id="registerAddress" class="form-input" placeholder="Your home address" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">City</label>
+                        <input type="text" id="registerCity" class="form-input" placeholder="Your city" />
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Date of Birth</label>
+                            <input type="date" id="registerDob" class="form-input" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Gender</label>
+                            <select id="registerGender" class="form-select">
+                                <option value="">Select gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Preferred Payment Method</label>
+                        <select id="registerPayment" class="form-select">
+                            <option value="">Select payment method</option>
+                            <option value="Telebirr">Telebirr</option>
+                            <option value="Cash">Cash at Station</option>
+                            <option value="CBE Birr">CBE Birr</option>
+                            <option value="Bank Transfer">Bank Transfer</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">ID Type</label>
+                            <select id="registerIdType" class="form-select">
+                                <option value="">Select ID type</option>
+                                <option value="National ID">National ID</option>
+                                <option value="Passport">Passport</option>
+                                <option value="Drivers License">Driver's License</option>
+                                <option value="Student ID">Student ID</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">ID Number</label>
+                            <input type="text" id="registerIdNumber" class="form-input" placeholder="Enter ID number" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Password *</label>
+                        <input type="password" id="registerPassword" class="form-input" placeholder="Create a strong password" required />
+                        <div class="password-strength">
+                            <span class="strength-text">Weak - use 8+ characters with numbers and symbols</span>
+                            <div class="strength-bar">
+                                <div class="strength-level" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Confirm Password *</label>
+                        <input type="password" id="registerConfirmPassword" class="form-input" placeholder="Confirm your password" required />
+                        <div id="passwordMatch" class="password-match">Passwords match!</div>
+                    </div>
+                    <div class="form-group" style="display: flex; align-items: center; gap: 0.5rem;">
+                        <input type="checkbox" id="registerTerms" required />
+                        <label for="registerTerms">I agree to the Terms of Service and Privacy Policy *</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Register</button>
+                </form>
+                <p style="text-align:center;margin-top:1rem;">
+                    Already have an account? <a href="#" id="switchToLogin">Login</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast-container"></div>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">🚌 Addis Metro</h3>
+                    <p class="footer-description">Your reliable city bus service in Addis Ababa</p>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="booking.html">Book Ticket</a></li>
+                        <li><a href="tickets.html">My Tickets</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Contact</h4>
+                    <p>City Bus Terminal, Addis Ababa</p>
+                    <p>Phone: +251 911 112 233</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span data-current-year>2026</span> Addis Metro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

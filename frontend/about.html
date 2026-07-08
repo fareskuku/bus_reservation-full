@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About - Addis Metro</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <nav class="main-nav">
+                <a href="index.html" class="logo">🚌 Addis Metro</a>
+                <button class="nav-toggle" aria-label="Toggle menu">
+                    <span class="hamburger"></span>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="booking.html" class="nav-link">Book Ticket</a></li>
+                    <li><a href="tickets.html" class="nav-link">My Tickets</a></li>
+                    <li><a href="about.html" class="nav-link active">About</a></li>
+                    <li class="auth-nav">
+                        <a href="#" id="loginBtn" class="nav-link">Login</a>
+                        <a href="#" id="registerBtn" class="nav-link">Register</a>
+                    </li>
+                    <li class="user-nav" style="display: none;">
+                        <a href="#" id="dashboardBtn" class="nav-link">📊 Dashboard</a>
+                        <a href="#" id="logoutBtn" class="nav-link">Logout</a>
+                    </li>
+                    <li class="admin-nav" style="display: none;">
+                        <a href="#" id="adminDashboardBtn" class="nav-link">👑 Admin Panel</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <header class="page-header">
+                <h1 class="page-title">About Addis Metro</h1>
+                <p class="page-subtitle">Your reliable city bus service in Addis Ababa</p>
+            </header>
+
+            <section class="section mission">
+                <div class="card mission-card">
+                    <h2 class="mission-title">Our Mission</h2>
+                    <p class="mission-text">Addis Metro is dedicated to providing affordable, reliable, and convenient bus transportation within Addis Ababa. We aim to make city travel accessible for everyone with our modern bus service.</p>
+                </div>
+            </section>
+
+            <section class="section features">
+                <div class="section-header">
+                    <h2 class="section-title">Why Choose Us</h2>
+                </div>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-content">
+                            <h3>City Coverage</h3>
+                            <p>We cover all major areas of Addis Ababa including Piazza, Bole, Mercato, Mexico Square, and more.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <h3>Affordable Prices</h3>
+                            <p>Our fares start from just 10 ETB per trip, making us the most affordable city transport option.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <h3>Frequent Service</h3>
+                            <p>Buses run every 10-15 minutes during peak hours, ensuring you never wait long.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section contact-form">
+                <div class="form-container">
+                    <h2 class="form-title">Contact Us</h2>
+                    <form id="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name" class="form-label">Full Name</label>
+                                <input type="text" id="name" class="form-input" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-email" class="form-label">Email</label>
+                                <input type="email" id="contact-email" class="form-input" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject" class="form-label">Subject</label>
+                            <input type="text" id="subject" class="form-input" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea id="message" class="form-textarea" rows="4" required></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <section class="section contact-info">
+                <div class="card contact-card">
+                    <h3>Contact Information</h3>
+                    <div class="contact-details">
+                        <p><strong>Address:</strong> City Bus Terminal, Addis Ababa</p>
+                        <p><strong>Phone:</strong> <a href="tel:+251911112233">+251 911 112 233</a></p>
+                        <p><strong>Email:</strong> <a href="mailto:info@addismetro.et">info@addismetro.et</a></p>
+                        <p><strong>Operating Hours:</strong> 5:30 AM - 10:30 PM Daily</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section map-section">
+                <div class="map-container">
+                    <h2>Our Main Terminal Location</h2>
+                    <div class="map-wrapper">
+                        <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=38.68,8.98,38.82,9.08&layer=mapnik&marker=9.03,38.74" class="map-frame" allowfullscreen loading="lazy" title="Addis Metro Main Terminal Location" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <div class="map-footer">
+                        <p><strong>City Bus Terminal</strong> - Our main hub for all routes</p>
+                        <a href="https://www.openstreetmap.org/?mlat=9.03&mlon=38.74#map=13/9.03/38.74" target="_blank" class="btn btn-primary">View Larger Map</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close modal">×</button>
+            
+            <div id="loginForm">
+                <h2 class="modal-title">Login</h2>
+                <form id="loginFormElement">
+                    <div class="form-group">
+                        <input type="email" id="loginEmail" class="form-input" placeholder="Email Address" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="loginPassword" class="form-input" placeholder="Password" required />
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Login</button>
+                </form>
+                <p style="text-align:center;margin-top:1rem;">
+                    Don't have an account? <a href="#" id="switchToRegister">Register</a>
+                </p>
+            </div>
+
+            <div id="registerForm" style="display: none;">
+                <h2 class="modal-title">Create Account</h2>
+                <form id="registerFormElement">
+                    <div class="form-group">
+                        <label class="form-label">Full Name *</label>
+                        <input type="text" id="registerFullName" class="form-input" placeholder="Enter your full name" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email Address *</label>
+                        <input type="email" id="registerEmail" class="form-input" placeholder="your.email@example.com" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Phone Number *</label>
+                        <input type="tel" id="registerPhone" class="form-input" placeholder="09XXXXXXXX" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Address</label>
+                        <input type="text" id="registerAddress" class="form-input" placeholder="Your home address" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">City</label>
+                        <input type="text" id="registerCity" class="form-input" placeholder="Your city" />
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Date of Birth</label>
+                            <input type="date" id="registerDob" class="form-input" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Gender</label>
+                            <select id="registerGender" class="form-select">
+                                <option value="">Select gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Preferred Payment Method</label>
+                        <select id="registerPayment" class="form-select">
+                            <option value="">Select payment method</option>
+                            <option value="Telebirr">Telebirr</option>
+                            <option value="Cash">Cash at Station</option>
+                            <option value="CBE Birr">CBE Birr</option>
+                            <option value="Bank Transfer">Bank Transfer</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">ID Type</label>
+                            <select id="registerIdType" class="form-select">
+                                <option value="">Select ID type</option>
+                                <option value="National ID">National ID</option>
+                                <option value="Passport">Passport</option>
+                                <option value="Drivers License">Driver's License</option>
+                                <option value="Student ID">Student ID</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">ID Number</label>
+                            <input type="text" id="registerIdNumber" class="form-input" placeholder="Enter ID number" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Password *</label>
+                        <input type="password" id="registerPassword" class="form-input" placeholder="Create a strong password" required />
+                        <div class="password-strength">
+                            <span class="strength-text">Weak - use 8+ characters with numbers and symbols</span>
+                            <div class="strength-bar">
+                                <div class="strength-level" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Confirm Password *</label>
+                        <input type="password" id="registerConfirmPassword" class="form-input" placeholder="Confirm your password" required />
+                        <div id="passwordMatch" class="password-match">Passwords match!</div>
+                    </div>
+                    <div class="form-group" style="display: flex; align-items: center; gap: 0.5rem;">
+                        <input type="checkbox" id="registerTerms" required />
+                        <label for="registerTerms">I agree to the Terms of Service and Privacy Policy *</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Register</button>
+                </form>
+                <p style="text-align:center;margin-top:1rem;">
+                    Already have an account? <a href="#" id="switchToLogin">Login</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast-container"></div>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">🚌 Addis Metro</h3>
+                    <p class="footer-description">Your reliable city bus service in Addis Ababa</p>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="booking.html">Book Ticket</a></li>
+                        <li><a href="tickets.html">My Tickets</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Contact</h4>
+                    <p>City Bus Terminal, Addis Ababa</p>
+                    <p>Phone: +251 911 112 233</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span data-current-year>2026</span> Addis Metro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Tickets - Addis Metro</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <nav class="main-nav">
+                <a href="index.html" class="logo">🚌 Addis Metro</a>
+                <button class="nav-toggle" aria-label="Toggle menu">
+                    <span class="hamburger"></span>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="booking.html" class="nav-link">Book Ticket</a></li>
+                    <li><a href="tickets.html" class="nav-link active">My Tickets</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li class="auth-nav">
+                        <a href="#" id="loginBtn" class="nav-link">Login</a>
+                        <a href="#" id="registerBtn" class="nav-link">Register</a>
+                    </li>
+                    <li class="user-nav" style="display: none;">
+                        <a href="#" id="dashboardBtn" class="nav-link">📊 Dashboard</a>
+                        <a href="#" id="logoutBtn" class="nav-link">Logout</a>
+                    </li>
+                    <li class="admin-nav" style="display: none;">
+                        <a href="#" id="adminDashboardBtn" class="nav-link">👑 Admin Panel</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <header class="page-header">
+                <h1 class="page-title">My Tickets</h1>
+                <p class="page-subtitle">Manage and view your booked tickets</p>
+            </header>
+
+            <div class="search-filter">
+                <div class="form-group">
+                    <input type="text" id="search-bookings" class="form-input" placeholder="Search bookings..." />
+                </div>
+                <div class="filter-buttons">
+                    <button class="btn btn-secondary filter-btn active" data-filter="all">All Tickets</button>
+                    <button class="btn btn-secondary filter-btn" data-filter="valid">Valid</button>
+                    <button class="btn btn-secondary filter-btn" data-filter="used">Used</button>
+                </div>
+            </div>
+
+            <div class="card stats-card">
+                <h3>Booking Statistics</h3>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h4 id="total-bookings">0</h4>
+                        <p>Total Bookings</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4 id="valid-bookings">0</h4>
+                        <p>Valid Tickets</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4 id="used-bookings">0</h4>
+                        <p>Used Tickets</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="bookings-list" class="tickets-list"></div>
+
+            <div id="no-bookings" class="empty-state" style="display: none;">
+                <div class="empty-content">
+                    <div class="empty-icon">🎫</div>
+                    <h3 class="empty-title">No Tickets Found</h3>
+                    <p class="empty-message">You haven't booked any tickets yet.</p>
+                    <a href="booking.html" class="btn btn-primary">Book Your First Ticket</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close modal">×</button>
+            
+            <div id="loginForm">
+                <h2 class="modal-title">Login</h2>
+                <form id="loginFormElement">
+                    <div class="form-group">
+                        <input type="email" id="loginEmail" class="form-input" placeholder="Email Address" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="loginPassword" class="form-input" placeholder="Password" required />
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Login</button>
+                </form>
+                <p style="text-align:center;margin-top:1rem;">
+                    Don't have an account? <a href="#" id="switchToRegister">Register</a>
+                </p>
+            </div>
+
+            <div id="registerForm" style="display: none;">
+                <h2 class="modal-title">Create Account</h2>
+                <form id="registerFormElement">
+                    <div class="form-group">
+                        <label class="form-label">Full Name *</label>
+                        <input type="text" id="registerFullName" class="form-input" placeholder="Enter your full name" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email Address *</label>
+                        <input type="email" id="registerEmail" class="form-input" placeholder="your.email@example.com" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Phone Number *</label>
+                        <input type="tel" id="registerPhone" class="form-input" placeholder="09XXXXXXXX" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Address</label>
+                        <input type="text" id="registerAddress" class="form-input" placeholder="Your home address" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">City</label>
+                        <input type="text" id="registerCity" class="form-input" placeholder="Your city" />
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Date of Birth</label>
+                            <input type="date" id="registerDob" class="form-input" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Gender</label>
+                            <select id="registerGender" class="form-select">
+                                <option value="">Select gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Preferred Payment Method</label>
+                        <select id="registerPayment" class="form-select">
+                            <option value="">Select payment method</option>
+                            <option value="Telebirr">Telebirr</option>
+                            <option value="Cash">Cash at Station</option>
+                            <option value="CBE Birr">CBE Birr</option>
+                            <option value="Bank Transfer">Bank Transfer</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">ID Type</label>
+                            <select id="registerIdType" class="form-select">
+                                <option value="">Select ID type</option>
+                                <option value="National ID">National ID</option>
+                                <option value="Passport">Passport</option>
+                                <option value="Drivers License">Driver's License</option>
+                                <option value="Student ID">Student ID</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">ID Number</label>
+                            <input type="text" id="registerIdNumber" class="form-input" placeholder="Enter ID number" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Password *</label>
+                        <input type="password" id="registerPassword" class="form-input" placeholder="Create a strong password" required />
+                        <div class="password-strength">
+                            <span class="strength-text">Weak - use 8+ characters with numbers and symbols</span>
+                            <div class="strength-bar">
+                                <div class="strength-level" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Confirm Password *</label>
+                        <input type="password" id="registerConfirmPassword" class="form-input" placeholder="Confirm your password" required />
+                        <div id="passwordMatch" class="password-match">Passwords match!</div>
+                    </div>
+                    <div class="form-group" style="display: flex; align-items: center; gap: 0.5rem;">
+                        <input type="checkbox" id="registerTerms" required />
+                        <label for="registerTerms">I agree to the Terms of Service and Privacy Policy *</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Register</button>
+                </form>
+                <p style="text-align:center;margin-top:1rem;">
+                    Already have an account? <a href="#" id="switchToLogin">Login</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast-container"></div>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">🚌 Addis Metro</h3>
+                    <p class="footer-description">Your reliable city bus service in Addis Ababa</p>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="booking.html">Book Ticket</a></li>
+                        <li><a href="tickets.html">My Tickets</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Contact</h4>
+                    <p>City Bus Terminal, Addis Ababa</p>
+                    <p>Phone: +251 911 112 233</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span data-current-year>2026</span> Addis Metro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

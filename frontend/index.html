@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Addis Metro - Bus Reservation</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <nav class="main-nav">
+                <a href="index.html" class="logo">🚌 Addis Metro</a>
+                <button class="nav-toggle" aria-label="Toggle menu">
+                    <span class="hamburger"></span>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link active">Home</a></li>
+                    <li><a href="booking.html" class="nav-link">Book Ticket</a></li>
+                    <li><a href="tickets.html" class="nav-link">My Tickets</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li class="auth-nav">
+                        <a href="#" id="loginBtn" class="nav-link">Login</a>
+                        <a href="#" id="registerBtn" class="nav-link">Register</a>
+                    </li>
+                    <li class="user-nav" style="display: none;">
+                        <a href="#" id="dashboardBtn" class="nav-link">📊 Dashboard</a>
+                        <a href="#" id="logoutBtn" class="nav-link">Logout</a>
+                    </li>
+                    <li class="admin-nav" style="display: none;">
+                        <a href="#" id="adminDashboardBtn" class="nav-link">👑 Admin Panel</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Addis Ababa City Bus Service</h1>
+                <p class="hero-subtitle">Affordable, reliable, and convenient bus travel within the city</p>
+                <a href="booking.html" class="btn btn-primary">Book Ticket Now</a>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div class="container">
+            <!-- Public Content (Visible to everyone) -->
+            <div id="publicContent">
+                <section class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">Welcome to Addis Metro</h2>
+                        <p class="section-subtitle">Your reliable city bus service in Addis Ababa</p>
+                    </div>
+                    <div class="card-grid">
+                        <div class="card">
+                            <div class="card-content">
+                                <h3 class="card-title">🚌 City Coverage</h3>
+                                <p>We cover all major areas of Addis Ababa including Piazza, Bole, Mercato, Mexico Square, and more.</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-content">
+                                <h3 class="card-title">💰 Affordable Prices</h3>
+                                <p>Our fares start from just 10 ETB per trip, making us the most affordable city transport option.</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-content">
+                                <h3 class="card-title">⏱️ Frequent Service</h3>
+                                <p>Buses run every 10-15 minutes during peak hours, ensuring you never wait long.</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-content">
+                                <h3 class="card-title">🔒 Secure Booking</h3>
+                                <p>Your tickets are securely stored and can be accessed anytime through your account.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section quick-booking">
+                    <div class="form-container">
+                        <div class="section-header">
+                            <h2 class="section-title">Quick Booking</h2>
+                            <p class="section-subtitle">Find and book your bus in minutes</p>
+                        </div>
+                        <form id="quick-booking-form" class="booking-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="from-location" class="form-label">From</label>
+                                    <select id="from-location" name="from" class="form-select" required>
+                                        <option value="">Select starting point</option>
+                                        <option value="piazza">Piazza</option>
+                                        <option value="bole">Bole</option>
+                                        <option value="mercatto">Mercato</option>
+                                        <option value="mexico">Mexico Square</option>
+                                        <option value="airport">Bole Airport</option>
+                                        <option value="saris">Saris</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="to-location" class="form-label">To</label>
+                                    <select id="to-location" name="to" class="form-select" required>
+                                        <option value="">Select destination</option>
+                                        <option value="piazza">Piazza</option>
+                                        <option value="bole">Bole</option>
+                                        <option value="mercatto">Mercato</option>
+                                        <option value="mexico">Mexico Square</option>
+                                        <option value="airport">Bole Airport</option>
+                                        <option value="saris">Saris</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="travel-date" class="form-label">Travel Date</label>
+                                    <input type="date" id="travel-date" name="date" class="form-input" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="passenger-count" class="form-label">Passengers</label>
+                                    <select id="passenger-count" name="passengers" class="form-select" required>
+                                        <option value="1">1 Passenger</option>
+                                        <option value="2">2 Passengers</option>
+                                        <option value="3">3 Passengers</option>
+                                        <option value="4">4 Passengers</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group form-actions">
+                                <button type="submit" class="btn btn-primary btn-full">Search Available Buses</button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </div>
+
+            <!-- User Dashboard (Visible to logged-in users) -->
+            <div id="userDashboard" style="display: none;">
+                <section class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">📊 My Dashboard</h2>
+                        <p class="section-subtitle">Your booking statistics and activity</p>
+                    </div>
+                    <div id="dashboardContent">
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <h4 id="userTotalBookings">0</h4>
+                                <p>Total Bookings</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4 id="userActiveBookings">0</h4>
+                                <p>Active Bookings</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4 id="userTotalSpent">ETB 0</h4>
+                                <p>Total Spent</p>
+                            </div>
+                        </div>
+                        <div id="userRecentBookings"></div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Admin Dashboard (Visible only to admins) -->
+            <div id="adminDashboard" style="display: none;">
+                <section class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">👑 Admin Dashboard</h2>
+                        <p class="section-subtitle">System-wide management and statistics</p>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <h4 id="adminTotalUsers">0</h4>
+                            <p>Total Users</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4 id="adminTotalBookings">0</h4>
+                            <p>Total Bookings</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4 id="adminTotalBuses">0</h4>
+                            <p>Total Buses</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4 id="adminTotalRevenue">ETB 0</h4>
+                            <p>Total Revenue</p>
+                        </div>
+                    </div>
+
+                    <div class="admin-actions" style="display: flex; gap: 1rem; flex-wrap: wrap; margin: 2rem 0;">
+                        <button class="btn btn-primary" onclick="showAddBus()">➕ Add Bus</button>
+                        <button class="btn btn-primary" onclick="showAddRoute()">➕ Add Route</button>
+                        <button class="btn btn-secondary" onclick="showAllUsers()">👤 Manage Users</button>
+                        <button class="btn btn-secondary" onclick="showAllBookings()">🎫 All Bookings</button>
+                        <button class="btn btn-secondary" onclick="showAllBuses()">🚌 All Buses</button>
+                        <button class="btn btn-secondary" onclick="showAllRoutes()">🗺️ All Routes</button>
+                    </div>
+
+                    <div id="adminContent">
+                        <p style="text-align:center;color:var(--gray-medium);padding:2rem;">Select an action above to manage the system.</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close modal">×</button>
+            
+            <div id="loginForm">
+                <h2 class="modal-title">Login</h2>
+                <form id="loginFormElement">
+                    <div class="form-group">
+                        <input type="email" id="loginEmail" class="form-input" placeholder="Email Address" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="loginPassword" class="form-input" placeholder="Password" required />
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Login</button>
+                </form>
+                <p style="text-align:center;margin-top:1rem;">
+                    Don't have an account? <a href="#" id="switchToRegister">Register</a>
+                </p>
+            </div>
+
+            <div id="registerForm" style="display: none;">
+                <h2 class="modal-title">Create Account</h2>
+                <form id="registerFormElement">
+                    <div class="form-group">
+                        <label class="form-label">Full Name *</label>
+                        <input type="text" id="registerFullName" class="form-input" placeholder="Enter your full name" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email Address *</label>
+                        <input type="email" id="registerEmail" class="form-input" placeholder="your.email@example.com" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Phone Number *</label>
+                        <input type="tel" id="registerPhone" class="form-input" placeholder="09XXXXXXXX" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Address</label>
+                        <input type="text" id="registerAddress" class="form-input" placeholder="Your home address" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">City</label>
+                        <input type="text" id="registerCity" class="form-input" placeholder="Your city" />
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Date of Birth</label>
+                            <input type="date" id="registerDob" class="form-input" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Gender</label>
+                            <select id="registerGender" class="form-select">
+                                <option value="">Select gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Preferred Payment Method</label>
+                        <select id="registerPayment" class="form-select">
+                            <option value="">Select payment method</option>
+                            <option value="Telebirr">Telebirr</option>
+                            <option value="Cash">Cash at Station</option>
+                            <option value="CBE Birr">CBE Birr</option>
+                            <option value="Bank Transfer">Bank Transfer</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">ID Type</label>
+                            <select id="registerIdType" class="form-select">
+                                <option value="">Select ID type</option>
+                                <option value="National ID">National ID</option>
+                                <option value="Passport">Passport</option>
+                                <option value="Drivers License">Driver's License</option>
+                                <option value="Student ID">Student ID</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">ID Number</label>
+                            <input type="text" id="registerIdNumber" class="form-input" placeholder="Enter ID number" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Password *</label>
+                        <input type="password" id="registerPassword" class="form-input" placeholder="Create a strong password" required />
+                        <div class="password-strength">
+                            <span class="strength-text">Weak - use 8+ characters with numbers and symbols</span>
+                            <div class="strength-bar">
+                                <div class="strength-level" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Confirm Password *</label>
+                        <input type="password" id="registerConfirmPassword" class="form-input" placeholder="Confirm your password" required />
+                        <div id="passwordMatch" class="password-match">Passwords match!</div>
+                    </div>
+                    <div class="form-group" style="display: flex; align-items: center; gap: 0.5rem;">
+                        <input type="checkbox" id="registerTerms" required />
+                        <label for="registerTerms">I agree to the Terms of Service and Privacy Policy *</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Register</button>
+                </form>
+                <p style="text-align:center;margin-top:1rem;">
+                    Already have an account? <a href="#" id="switchToLogin">Login</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Bus Modal -->
+    <div id="addBusModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <button class="modal-close" onclick="document.getElementById('addBusModal').style.display='none'">×</button>
+            <h2 class="modal-title">Add New Bus</h2>
+            <form id="addBusForm">
+                <div class="form-group">
+                    <label class="form-label">Bus Number *</label>
+                    <input type="text" id="busNumber" class="form-input" placeholder="BUS001" required />
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Capacity *</label>
+                    <input type="number" id="busCapacity" class="form-input" placeholder="40" required />
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Bus Type</label>
+                    <select id="busType" class="form-select">
+                        <option value="standard">Standard</option>
+                        <option value="luxury">Luxury</option>
+                        <option value="mini">Mini</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Amenities</label>
+                    <input type="text" id="busAmenities" class="form-input" placeholder="AC, WiFi, TV" />
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Add Bus</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Route Modal -->
+    <div id="addRouteModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <button class="modal-close" onclick="document.getElementById('addRouteModal').style.display='none'">×</button>
+            <h2 class="modal-title">Add New Route</h2>
+            <form id="addRouteForm">
+                <div class="form-group">
+                    <label class="form-label">Bus *</label>
+                    <select id="routeBusId" class="form-select" required></select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Origin *</label>
+                    <input type="text" id="routeOrigin" class="form-input" placeholder="Piazza" required />
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Destination *</label>
+                    <input type="text" id="routeDestination" class="form-input" placeholder="Bole" required />
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Departure Time *</label>
+                        <input type="datetime-local" id="routeDeparture" class="form-input" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Arrival Time *</label>
+                        <input type="datetime-local" id="routeArrival" class="form-input" required />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Fare (ETB) *</label>
+                    <input type="number" id="routeFare" class="form-input" placeholder="20" required />
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Add Route</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="toast" class="toast-container"></div>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">🚌 Addis Metro</h3>
+                    <p class="footer-description">Your reliable city bus service in Addis Ababa</p>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="booking.html">Book Ticket</a></li>
+                        <li><a href="tickets.html">My Tickets</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Contact</h4>
+                    <p>City Bus Terminal, Addis Ababa</p>
+                    <p>Phone: +251 911 112 233</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span data-current-year>2026</span> Addis Metro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
