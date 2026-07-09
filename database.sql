@@ -1,6 +1,5 @@
 
 
--- Create users table with role column
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     full_name VARCHAR(100) NOT NULL,
@@ -19,7 +18,6 @@ CREATE TABLE users (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Create buses table
 CREATE TABLE buses (
     id SERIAL PRIMARY KEY,
     bus_number VARCHAR(20) UNIQUE NOT NULL,
@@ -31,7 +29,7 @@ CREATE TABLE buses (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Create routes table
+
 CREATE TABLE routes (
     id SERIAL PRIMARY KEY,
     bus_id INTEGER REFERENCES buses(id) ON DELETE CASCADE,
@@ -45,7 +43,7 @@ CREATE TABLE routes (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Create seats table
+
 CREATE TABLE seats (
     id SERIAL PRIMARY KEY,
     bus_id INTEGER REFERENCES buses(id) ON DELETE CASCADE,
@@ -56,7 +54,6 @@ CREATE TABLE seats (
     UNIQUE(bus_id, seat_number)
 );
 
--- Create bookings table
 CREATE TABLE bookings (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
@@ -69,7 +66,7 @@ CREATE TABLE bookings (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Create payments table
+
 CREATE TABLE payments (
     id SERIAL PRIMARY KEY,
     booking_id INTEGER REFERENCES bookings(id) ON DELETE CASCADE,
@@ -80,7 +77,7 @@ CREATE TABLE payments (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Create reviews table
+
 CREATE TABLE reviews (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
@@ -90,7 +87,7 @@ CREATE TABLE reviews (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Create notifications table
+
 CREATE TABLE notifications (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
@@ -99,7 +96,7 @@ CREATE TABLE notifications (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Create indexes
+
 CREATE INDEX idx_users_email ON users(email);
 CREATE INDEX idx_users_phone ON users(phone);
 CREATE INDEX idx_users_city ON users(city);
@@ -109,15 +106,14 @@ CREATE INDEX idx_routes_departure_time ON routes(departure_time);
 CREATE INDEX idx_bookings_user_id ON bookings(user_id);
 CREATE INDEX idx_bookings_route_id ON bookings(route_id);
 
--- Insert sample bus
+
 INSERT INTO buses (bus_number, capacity, bus_type, amenities) 
 VALUES ('BUS001', 40, 'standard', ARRAY['AC', 'WiFi']);
 
--- Insert sample route
+
 INSERT INTO routes (bus_id, origin, destination, departure_time, arrival_time, fare_amount)
 VALUES (1, 'Piazza', 'Bole', NOW() + INTERVAL '1 day', NOW() + INTERVAL '1 day 45 minutes', 20.00);
 
--- Insert sample seats
 INSERT INTO seats (bus_id, seat_number, seat_type, is_available)
 SELECT 1, generate_series(1, 40), 'standard', true;
 
@@ -137,7 +133,7 @@ SELECT id, full_name, email, role, created_at FROM users;
 SELECT id, full_name, email, role FROM users WHERE email = 'admin@bus.com';
 
 -- Show all tables
--- Update admin password to 'admin123' with correct hash
+
 UPDATE users 
 SET password_hash = '$2b$10$y62weiAW6JkasH3PKFeTVOLWZ6FDKAo3Sf1U8P2ucCB8u/TJiulhS'
 WHERE email = 'admin@bus.com';
