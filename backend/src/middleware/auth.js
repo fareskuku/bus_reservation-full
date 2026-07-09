@@ -10,7 +10,7 @@ const auth = (req, res, next) => {
       message: 'No token, authorization denied' 
     });
   }
-
+  
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET || 'default_secret_key');
     req.userId = decoded.userId;
